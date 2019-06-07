@@ -4,6 +4,7 @@
       <b-row>
         <b-col sm="6" offset="3">
           <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+            <p>{{error}}</p>
             <b-form-group
               id="input-group-1"
               label="Email address:"
@@ -20,12 +21,12 @@
             </b-form-group>
 
             <b-form-group id="input-group-2" label="Your Password:" label-for="input-2">
+
               <b-form-input
                 id="input-2"
                 v-model="form.password"
                 type="password"
-                required
-                placeholder="Enter name"
+                placeholder="Enter password"
                 value="12346587"
               ></b-form-input>
             </b-form-group>
@@ -53,7 +54,8 @@
           email: '',
           password: ''
         },
-        show: true
+        show: true,
+        error: '',
       }
     },
     methods: {
@@ -66,9 +68,16 @@
           },
           body: JSON.stringify(this.form)
         })
-          .then(res => console.log(res))
+          .then(res => res.json())
           .then(data => {
-            this.$router.push('/home')
+            console.log(data)
+            if (data.msg === 'Success') {
+              this.$router.push('/home')
+            } else if (data.msg === 'Invalid email or password') {
+              this.error = data.msg
+            } else {
+              this.$router.push('/')
+            }
             // this.$emit(data)
           });
         //

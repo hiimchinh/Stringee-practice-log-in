@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Log in and create contact</h1>
+    <h1>Welcome {{msg}}</h1>
     <router-link to="/"></router-link>
   </div>
 
@@ -8,8 +8,12 @@
 
 <script>
     export default {
-        name: "Home"
+      props: {
+        email:String
+        },
+      name: "Home",
     }
+
 </script>
 
 <style scoped>
