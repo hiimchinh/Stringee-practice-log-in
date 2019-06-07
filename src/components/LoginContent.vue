@@ -46,6 +46,7 @@
 </template>
 
 <script>
+  import store from '@/store'
   export default {
     data() {
       return {
@@ -72,13 +73,13 @@
           .then(data => {
             console.log(data)
             if (data.msg === 'Success') {
+              store.commit('saveUser', data)
               this.$router.push('/home')
             } else if (data.msg === 'Invalid email or password') {
               this.error = data.msg
             } else {
               this.$router.push('/')
             }
-            // this.$emit(data)
           });
         //
       },
