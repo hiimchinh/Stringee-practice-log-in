@@ -1,16 +1,8 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <Header/>
-    <b-container class="bv-example-row">
-      <b-row >
-        <b-col sm="6" offset="3">
-          <LoginContent/>
-        </b-col>
-      </b-row>
-    </b-container>
-    <Footer/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
@@ -18,12 +10,14 @@
   import Header from './components/Header';
   import Footer from './components/Footer';
   import LoginContent from './components/LoginContent';
+  import HelloWorld from './components/HelloWorld';
 export default {
   name: 'App',
   components: {
     Header,
     Footer,
-    LoginContent
+    LoginContent,
+    HelloWorld
   }
 }
 </script>
